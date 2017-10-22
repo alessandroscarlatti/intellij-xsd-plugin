@@ -16,6 +16,10 @@ public class TestAnnotatorGroovy implements Annotator {
 
     Closure annotateClosure
 
+    // TODO handle ref if not xs:...
+    // TODO handle simpleType grayed out
+    // TODO handle all
+    // TODO handle any
     public TestAnnotatorGroovy() {
         annotateClosure = { PsiElement e, AnnotationHolder h ->
             if (e instanceof XmlTag) {
