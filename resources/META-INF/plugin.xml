@@ -23,8 +23,10 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-    <!-- this annotator only runs in XML languages -->
-    <annotator language="XML" implementationClass="com.scarlatti.TestAnnotatorJava"/>
+    <!-- this annotator currently runs in all XML documents -->
+    <!--<fileTypeFactory implementation="com.scarlatti.XSDFileTypeFactory" />-->
+    <annotator language="XML" implementationClass="com.scarlatti.XSDAnnotator" />
+
   </extensions>
 
   <actions>

@@ -1,5 +1,6 @@
 package com.scarlatti;
 
+import com.intellij.lang.LanguageAnnotators;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
@@ -27,7 +28,8 @@ public class XsdPlugin implements ProjectComponent {
 
     @Override
     public void initComponent() {
-
+        System.out.println("initComponent");
+//        LanguageAnnotators.INSTANCE.addExplicitExtension(XSDLanguage.INSTANCE, new XSDAnnotator());
     }
 
     @Override
