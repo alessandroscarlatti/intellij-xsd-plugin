@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="stringType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="intType">
+        <xs:restriction base="xs:positiveInteger"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="decType">
+        <xs:restriction base="xs:decimal"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="orderIdType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{6}"/>
+            <xs:maxExclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="shipToType">
+        <xs:sequence>
+            <xs:element name="name" type="stringType"/>
+            <xs:element name="address" type="stringType"/>
+            <xs:element name="city" type="stringType"/>
+            <xs:element name="country" type="stringType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="itemType">
+        <xs:sequence>
+            <xs:element name="title" type="stringType"/>
+            <xs:element name="note" type="stringType" minOccurs="0"/>
+            <xs:element name="quantity" type="intType"/>
+            <xs:element name="price" type="decType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="shipOrderType">
+        <xs:sequence>
+            <xs:element name="orderperson" type="stringType"/>
+            <xs:element name="shipto" type="shipToType"/>
+            <xs:element name="item" maxOccurs="unbounded" type="itemType"/>
+        </xs:sequence>
+        <xs:attribute name="orderid" type="orderIdType" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="shipOrder" type="shipOrderType"/>
+
+</xs:schema>
