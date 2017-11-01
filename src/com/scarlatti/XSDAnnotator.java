@@ -75,14 +75,16 @@ public class XSDAnnotator implements Annotator {
         if (e instanceof XmlTag) {
             XmlTag xmlTag = (XmlTag) e;
 
-            // highlight the type names appropriately
-            highlightTypeNames(xmlTag, h);
+            if (xmlTag.getNamespacePrefix().equals("xs")) {
+                // highlight the type names appropriately
+                highlightTypeNames(xmlTag, h);
 
-            // gray out tag and subtags if applicable
-            grayOutTagAndSubTagsIfApplicable(xmlTag, h);
+                // gray out tag and subtags if applicable
+                grayOutTagAndSubTagsIfApplicable(xmlTag, h);
 
-            // highlight attribute names
-            highlightAttributeNames(xmlTag, h);
+                // highlight attribute names
+                highlightAttributeNames(xmlTag, h);
+            }
         }
     }
 
@@ -96,8 +98,8 @@ public class XSDAnnotator implements Annotator {
 
         // highlight simple type names and complex type names similarly
         if (
-                tagName.endsWith("simpleType") ||
-                tagName.endsWith("complexType")
+                tagName.equals("xs:simpleType") ||
+                tagName.equals("xs:complexType")
         ) {
 
             // highlight name attribute
@@ -106,20 +108,20 @@ public class XSDAnnotator implements Annotator {
         }
 
         // highlight element names differently from attribute names
-        if (tagName.endsWith("element")) {
+        if (tagName.equals("xs:element")) {
             if (xmlTag.getAttribute("name") != null)
                 highlight(xmlTag.getAttribute("name").getValueElement().getTextRange(), KEYWORD, h);
         }
 
-        if (tagName.endsWith("attribute")) {
+        if (tagName.equals("xs:attribute")) {
             if (xmlTag.getAttribute("name") != null)
                 highlight(xmlTag.getAttribute("name").getValueElement().getTextRange(), VALID_STRING_ESCAPE, h);
         }
 
         // highlight type attribute the same for elements and attribute nodes
         if (
-            tagName.endsWith("element") ||
-            tagName.endsWith("attribute")
+            tagName.equals("xs:element") ||
+            tagName.equals("xs:attribute")
         ) {
 
             if (xmlTag.getAttribute("type") != null)
@@ -139,21 +141,21 @@ public class XSDAnnotator implements Annotator {
         String tagName = xmlTag.getName();
 
         if (
-            tagName.endsWith("complexType") ||
-            tagName.endsWith("simpleType") ||
-            tagName.endsWith("enumeration")
+            tagName.equals("xs:complexType") ||
+            tagName.equals("xs:simpleType") ||
+            tagName.equals("xs:enumeration")
         ) {
-            // gray out types not defined at the first level
-            if (xmlTag.getParentTag() != null && !xmlTag.getParentTag().getName().endsWith("schema")) {
+            // gray out types not defined with names
+            if (xmlTag.getAttribute("name") == null) {
                 grayOutTag(xmlTag, h);
             }
         }
 
         if (!(
-                tagName.endsWith("simpleType") ||
-                tagName.endsWith("complexType") ||
-                tagName.endsWith("element") ||
-                tagName.endsWith("attribute")
+                tagName.equals("xs:simpleType") ||
+                tagName.equals("xs:complexType") ||
+                tagName.equals("xs:element") ||
+                tagName.equals("xs:attribute")
         )) {
             grayOutTag(xmlTag, h);
         } else {
@@ -171,31 +173,24 @@ public class XSDAnnotator implements Annotator {
     public void highlightAttributeNames(XmlTag xmlTag, AnnotationHolder h) {
         for (XmlAttribute attribute : xmlTag.getAttributes()) {
 
-            // gray out attribute names if "name" or "type"
-            int start = attribute.getNameElement().getTextRange().getStartOffset();
-            int end = attribute.getValueElement().getTextRange().getStartOffset();  // grab the =
 
-            highlight(new TextRange(start, end), LINE_COMMENT, h);
+            // highlight value= for enumeration
+            if (xmlTag.getName().equals("xs:enumeration") && attribute.getName().equals("value")) {
 
-//            // highlight attribute names if not "name" or "type"
-//            if (!(attribute.getName().equals("name") || attribute.getName().equals("type"))) {
-//
-//                int start = attribute.getNameElement().getTextRange().getStartOffset();
-//                int end = attribute.getValueElement().getTextRange().getStartOffset();  // grab the =
-//
-//                Annotation attributeHighlight = h.createInfoAnnotation(new TextRange(start, end), null);
-//                attributeHighlight.setTextAttributes(PREDEFINED_SYMBOL);
-//            } else {
-//                // gray out attribute names if "name" or "type"
-//                int start = attribute.getNameElement().getTextRange().getStartOffset();
-//                int end = attribute.getValueElement().getTextRange().getStartOffset();  // grab the =
-//
-//                Annotation attributeHighlight = h.createInfoAnnotation(new TextRange(start, end), null);
-//                attributeHighlight.setTextAttributes(LINE_COMMENT);
-//            }
+                int start = attribute.getNameElement().getTextRange().getStartOffset();
+                int end = attribute.getValueElement().getTextRange().getStartOffset();  // grab the =
 
-            // highlight the attribute value if the attribute is "base"
-            if (attribute.getName().equals("base")) {
+                highlight(new TextRange(start, end), STATIC_FIELD, h);
+            } else {
+                // gray out all other attribute names
+                int start = attribute.getNameElement().getTextRange().getStartOffset();
+                int end = attribute.getValueElement().getTextRange().getStartOffset();  // grab the =
+
+                highlight(new TextRange(start, end), LINE_COMMENT, h);
+            }
+
+            // highlight the attribute and namespace value distinctly if the attribute is "base" or "type"
+            if (attribute.getName().equals("base") || attribute.getName().equals("type")) {
 
                 // start off by highlighting the whole value of the "base" attribute
                 highlight(attribute.getValueElement().getTextRange(), NUMBER, h);
