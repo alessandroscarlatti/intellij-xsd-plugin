@@ -18,9 +18,6 @@ import static com.intellij.openapi.editor.DefaultLanguageHighlighterColors.*;
 import static com.intellij.psi.xml.XmlTokenType.*;
 import static com.scarlatti.TextAttributesBuilder.FONT_STYLE_BOLD;
 
-/**
- * Created by pc on 10/21/2017.
- */
 public class XSDAnnotator implements Annotator {
 
     /**
@@ -82,7 +79,6 @@ public class XSDAnnotator implements Annotator {
             }
         }
     }
-
 
     /**
      * Core highlighting process.
@@ -165,9 +161,9 @@ public class XSDAnnotator implements Annotator {
 
         if (
             tagName.equals("xs:complexType") ||
-            tagName.equals("xs:simpleType") ||
-            tagName.equals("xs:enumeration")
-        ) {
+                tagName.equals("xs:simpleType") ||
+                tagName.equals("xs:enumeration")
+            ) {
             // gray out types not defined with names
             if (xmlTag.getAttribute("name") == null) {
                 grayOutTag(xmlTag, h);
@@ -175,7 +171,7 @@ public class XSDAnnotator implements Annotator {
         }
 
         if (!(
-                tagName.equals("xs:simpleType") ||
+            tagName.equals("xs:simpleType") ||
                 tagName.equals("xs:complexType") ||
                 tagName.equals("xs:element") ||
                 tagName.equals("xs:attribute")
