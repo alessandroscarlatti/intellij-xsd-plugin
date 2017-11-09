@@ -26,6 +26,8 @@ public class XsdPlugin implements ProjectComponent {
 
     }
 
+
+
     @Override
     public void initComponent() {
         System.out.println("initComponent");

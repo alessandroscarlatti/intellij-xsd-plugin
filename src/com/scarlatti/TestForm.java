@@ -1,41 +1,60 @@
 package com.scarlatti;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-/**
- * ~     _____                                    __
- * ~    (, /  |  /)                /)         (__/  )      /)        ,
- * ~      /---| // _ _  _  _ __  _(/ __ ___     / _ _  __ // _ _/_/_
- * ~   ) /    |(/_(//_)/_)(_(/ ((_(_/ ((_)   ) / (_(_(/ ((/_(_((_(__(_
- * ~  (_/                                   (_/
- * ~  Monday, 10/30/2017
- */
-public class TestForm {
-    private JCheckBox highlightYesNoCheckBox;
-    private JPanel form;
-
-    private boolean highlightYesOrNo = true;
+public class TestForm extends JDialog {
+    private JPanel contentPane;
+    private JButton buttonOK;
+    private JButton buttonCancel;
 
     public TestForm() {
-        highlightYesNoCheckBox.addActionListener(new ActionListener() {
-            @Override
+        setContentPane(contentPane);
+        setModal(true);
+        getRootPane().setDefaultButton(buttonOK);
+
+        buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                highlightYesOrNo = highlightYesNoCheckBox.isSelected();
+                onOK();
             }
         });
+
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
+
+        // call onCancel() when cross is clicked
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
+            }
+        });
+
+        // call onCancel() on ESCAPE
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public boolean getHighlightYesNo() {
-        return highlightYesOrNo;
+    private void onOK() {
+        // add your code here
+        dispose();
     }
 
-    public JPanel getForm() {
-        return form;
+    private void onCancel() {
+        // add your code here if necessary
+        dispose();
     }
 
-    public void setForm(JPanel form) {
-        this.form = form;
+    public static void main(String[] args) {
+        TestForm dialog = new TestForm();
+        dialog.pack();
+        dialog.setVisible(true);
+//        System.exit(0);
     }
 }

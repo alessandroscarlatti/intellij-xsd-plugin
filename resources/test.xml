@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Comparison - Intel vs. AMD</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/index.css" rel="stylesheet" type="text/css" />
+
+        <script src="jquery/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/index.js"></script>
+    </head>
+    <body>
+        <a id="top"></a>
+
+        <!-- title bar, disappears on scroll -->
+        <div class="container-fluid">
+            <h1>Intel vs. AMD</h1>
+            <h3>Web Design Project by Steven Dale and Grant Bradshaw</h3>
+        </div>
+
+        <a id="content"></a>
+
+        <!-- this is the navigation toolbar -->
+        <nav class="navbar navbar-default" data-spy="affix"  data-offset-top="140">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Intel vs. AMD</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="#top">Comparison</a></li>
+                <li><a href="history.html">History</a></li>
+                <!-- TODO show listed pages here for screens that are large enough -->
+            </ul>
+
+            <!-- TODO right-align, center vertically -->
+            <div class="nav-dropdown pull-right" style="height: 100%;">
+                <!-- menu button -->
+                <button class="btn btn-primary navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-menu-hamburger" />
+                </button>
+
+                <!-- dropdown menu -->
+                <nav class="dropdown-menu">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="#content">Comparison</a></li>
+                        <li><a href="history.html">History</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </nav>
+
+        <div class="content container-fluid">
+
+            <p>Okay so firstly I’d like to quote some brief summaries found <a href="http://cpu.userbenchmark.com/Compare/Intel-Core-i9-7900X-vs-AMD-Ryzen-TR-1950X/3936vs3932" target="_blank">here.</a> </p>
+            <p>First a quote about the Intel 7900x:</p>
+            <p><blockquote>“Intel’s core i9-7900X, from the Skylake-X series, is Intel’s latest 10-core, 20-thread flagship processor. It's the first to bear the i9 moniker and utilize the new X299 (Basin Falls) chipset/motherboard. The 7900X is the fastest CPU on the market today, however, imminent competition from AMD’s 16-core, 32-thread Ryzen Threadripper CPUs and the forthcoming release of more Intel Core X series mean that its reign will be a short one. The i9-7900X supersedes the 10-core Broadwell-E core i7-6950X that held the crown for little over a year. Both are extremely powerful and pricey high end desktop processors (HEDTs) which excel in multi-threaded tasks such as media encoding. However, despite the same power draw (TDP 140W), the newer i9-7900X betters the i7-6950X in terms of peak overclocked performance by 10% mostly thanks to increased clock speeds from 3.0GHz/4.0GHz to 3.3GHz/4.3GHz for base/turbo. It also betters the i7-6950X on price by around 28%. This all translates to the i9-7900X offering around 20% more value for money, even despite its eye-watering $999 price tag. The more accessible pricing (albeit not accessible for the majority) and hurried release of the i9-7900k to market is widely perceived as a reaction to AMD’s Ryzen Threadripper CPUs, rumoured for release towards the end of July 2017. So if you want to own the fastest consumer CPU in the world, it would be wise to wait for the dust to settle.”
+            </blockquote></p>
+            <p>Secondly another quote about the AMD Threadripper:</p>
+            <p><blockquote>“AMD’s 16 core, 32 thread Ryzen Threadripper 1950X is finally here to seize the throne for high end desktop processors. The 1950X is the flagship of the Zen based Threadripper series which also includes the 12 core 1920X and the 8 core 1900X. The 1950X has a stock clock of 3.4 GHz increasing to a maximum single core boost of 4.0 GHz and features quad channel DDR4 and 64 PCI Express lanes. This processor is effectively two Ryzen 7 1800Xs glued together with Infinity Fabric (AMD’s scalable interconnecting technology), making the 1950X one of the physically largest CPUs on the consumer market. If you are considering this CPU, you will need a new X399 motherboard with a TR4 socket. Early benchmarks show the 1950X competing with Intel’s similarly priced i9-7900X. Whilst the 7900X has slightly higher single and quad core scores (10%-15%), the 1950X is around 35% faster for multi-core workloads. Content creators, and other core intensive task masters will not be disappointed.”
+            </blockquote></p>
+
+            <p>So from those two quotes hopefully you understand some of their similarities and differences between the two.</p>
+
+            <h4>Specifications</h4>
+            <table class="table table-striped">
+                <tr>
+                    <th>AMD TR 1950x</th>
+                    <th>CPU</th>
+                    <th>Intel i9 7900x</th>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Cores</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>32</td>
+                    <td>Threads</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>TR4</td>
+                    <td>Socket Type</td>
+                    <td>LGA 2066</td>
+                </tr>
+                <tr>
+                    <td>180W</td>
+                    <td>TDP (Thermal Design Power)</td>
+                    <td>140W</td>
+                </tr>
+                <tr>
+                    <td>8MB</td>
+                    <td>L2 Cache</td>
+                    <td>20MB</td>
+                </tr>
+                <tr>
+                    <td>32MB</td>
+                    <td>L3 Cache</td>
+                    <td>13.75MB</td>
+                </tr>
+                <tr>
+                    <td>3.4GHz</td>
+                    <td>Base Frequency</td>
+                    <td>3.3GHz</td>
+                </tr>
+                <tr>
+                    <td>3.7GHz</td>
+                    <td>Boost (All cores)</td>
+                    <td>4.0GHz</td>
+                </tr>
+                <tr>
+                    <td>4.2GHz</td>
+                    <td>Boost (Extended)</td>
+                    <td>4.5GHz</td>
+                </tr>
+                <tr>
+                    <td>Enabled</td>
+                    <td>SMT (Simultaneous Multithreading)</td>
+                    <td>Enabled</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>DDR4 Memory Channels</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>64</td>
+                    <td>PCIE Gen3 Lanes</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>$1000</td>
+                    <td>MSRP</td>
+                    <td>$1000</td>
+                </tr>
+            </table>
+
+            <h4>Benchmarking</h4>
+
+            <p>Now time for the fun part: reviewing the benchmarking data. I pulled these data from Paul’s Hardware Channel over on YouTube. For any questions on what kind of hardware is being used in the bench marketing test please view the video in the <a href="https://www.youtube.com/watch?v=Fr1ZlUu8v_Q" target="_blank">Link.</a></p>
+
+            <p>So Overall you can tell that for Multithread purposes the Thread ripper is a clear winner however the Intel 7900x is still the best when it comes to single core processing. Now, the biggest thing with the Threadripper is the most games don’t support 16 cores so most games you must set the CPU to a game mode option which will only use 8 cores of the CPU after a restart. It is obvious that the Threadripper is meant more for higher end rendering software that can push multicore rendering and the 7900x is more of a top dog when it comes to gaming. So, hopefully after reviewing what sets these CPU chips apart I hope you can now decide on which one would fit your needs the best.
+            </p>
+        </div>
+
+
+        <!-- this is the pager -->
+        <ul class="pager">
+            <li><a href="index.html#content"><span class="glyphicon glyphicon-menu-left"></span>Previous</a></li>
+            <li><a href="history.html#content">Next<span class="glyphicon glyphicon-menu-right"></span></a></li>
+        </ul>
+    </body>
+</html>

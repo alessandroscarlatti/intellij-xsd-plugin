@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="SkeletonDocument">
+        <xs:sequence>
+            <xs:element name="Address" type="xs:string" />
+            <xs:element name="Location" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FullDocument">
+        <xs:complexContent>
+            <xs:extension base="SkeletonDocument">
+                <xs:sequence>
+                    <xs:element name="Resort " type="xs:string" />
+                    <xs:element name="Fee" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="Things">
+        <xs:annotation>
+            <xs:documentation>
+                This group can be used with any element that represents a <b> person</b>.
+                It provides for FirstName, MiddleName (?), and LastName.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element name="Thing1" type="SkeletonDocument" />
+                </xs:choice>
+                <xs:choice minOccurs="0">
+                    <xs:element name="Thing2" type="SkeletonDocument" />
+                </xs:choice>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="Thing3">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Thing4" />
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

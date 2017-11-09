@@ -25,7 +25,9 @@
     <!-- Add your extensions here -->
     <!-- this annotator currently runs in all XML documents -->
     <!--<fileTypeFactory implementation="com.scarlatti.XSDFileTypeFactory" />-->
-    <annotator language="XML" implementationClass="com.scarlatti.XSDAnnotator2" />
+    <!--<annotator language="XML" implementationClass="com.scarlatti.XSDAnnotator2" />-->
+    <toolWindow id="Viewer" secondary="true" anchor="right"
+                factoryClass="com.scarlatti.Viewer"/>
 
   </extensions>
 
@@ -37,5 +39,12 @@
       <!--<add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
     <!--</action>-->
   </actions>
+
+  <application-components>
+    <!-- Add your application components here -->
+    <component>
+      <implementation-class>com.scarlatti.PluginComponent</implementation-class>
+    </component>
+  </application-components>
 
 </idea-plugin>
